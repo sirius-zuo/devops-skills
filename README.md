@@ -14,13 +14,11 @@ Run `/devops` in any project directory. The agent detects which scenario applies
 
 ### Output
 
-Everything lands in `devops/working/` at your project root:
+Output is split between `devops/working/` (generated configs) and `devops/report/` (data files + HTML report) at your project root:
 
 ```
 devops/
 ├── working/
-│   ├── analysis.json              — detected stack + your choices
-│   ├── security-findings.json     — security audit results
 │   ├── containers/
 │   │   ├── Dockerfile             — multi-stage production image
 │   │   └── Dockerfile.dev         — dev with hot-reload
@@ -39,6 +37,8 @@ devops/
 │       ├── setup-local.sh
 │       └── setup-team.sh
 └── report/
+    ├── analysis.json              — detected stack + your choices
+    ├── security-findings.json     — security audit results
     └── index.html                 — HTML report with architecture diagrams
 ```
 
@@ -148,9 +148,9 @@ Five skills run in sequence. Each produces an output file the next one reads —
 ```
 /devops  (dispatcher)
    ↓
-devops-analyze    →  devops/working/analysis.json
+devops-analyze    →  devops/report/analysis.json
    ↓
-devops-security   →  devops/working/security-findings.json
+devops-security   →  devops/report/security-findings.json
                       devops/working/ci/security/.gitleaks.toml
    ↓
 devops-generate   →  devops/working/** (all config files)

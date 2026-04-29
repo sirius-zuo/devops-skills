@@ -251,7 +251,7 @@ Generate the following 8 sections in order:
 5. **Dev Environments** — Diagram 4 embedded as inline SVG + setup instructions.
 6. **Generated Artifacts** — table of every file in `devops/working/` with a one-line description. Infer the Purpose column from the filename: `Dockerfile` → "Multi-stage production container image", `Dockerfile.dev` → "Dev container with hot-reload", `.dockerignore` → "Files excluded from Docker build context", `docker-compose.yml` → "Local dev stack (single machine)", `docker-compose.team.yml` → "Shared team dev stack with DevContainer", `docker-compose.prod.yml` → "Production compose reference", `devcontainer.json` → "VS Code DevContainer configuration", `ci.yml` → "GitHub Actions CI/CD pipeline", `.gitlab-ci.yml` → "GitLab CI pipeline", `config.yml` → "CircleCI pipeline", `setup-local.sh` → "One-command local dev setup script", `setup-team.sh` → "One-command team dev setup script", `main.tf` → "Terraform infrastructure (cloud resources)", `variables.tf` → "Terraform variable definitions", `*.tfvars` → "Terraform environment-specific variable values", Kubernetes `.yaml` files → "Kubernetes manifest (resource type from filename)".
 7. **Security Report** — severity counts (critical/high/medium/low), findings table sorted Critical → High → Medium → Low.
-8. **Recommendations** — prioritized list derived from: (a) `security-findings.json` critical and high findings, each becoming a recommended action; (b) any `recommendations[]` array in `analysis.json` if present; (c) AI-inferred improvements from the detected stack and choices. For the review scenario, contrast each recommendation with the specific existing config issue it addresses.
+8. **Recommendations** — table with columns **Priority**, **Category**, **Recommendation**. Derive rows from: (a) `security-findings.json` critical/high/medium/low findings, each becoming a row; (b) any `recommendations[]` array in `analysis.json` if present; (c) AI-inferred quality improvements from the detected stack and choices. Use `badge-critical`/`badge-high`/`badge-medium`/`badge-low` for security-severity priorities (e.g. "P1 Critical", "P2 Medium"); use `badge-quality` (blue) for quality/process improvements. For the review scenario, contrast each recommendation with the specific existing config issue it addresses.
 
 **Placeholder substitution reference:**
 - `{date}` — today's date in ISO format `YYYY-MM-DD` (use current system date)
@@ -307,6 +307,7 @@ Substitute all `{placeholder}` values from `analysis.json` and `security-finding
     .badge-high { background: #ffedd5; color: #c2410c; }
     .badge-medium { background: #fef9c3; color: #92400e; }
     .badge-low { background: #dcfce7; color: var(--green); }
+    .badge-quality { background: #dbeafe; color: var(--blue); }
     .counts { display: flex; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
     .count-card { flex: 1; min-width: 100px; background: var(--gray-50);
                   border: 1px solid var(--gray-200); border-radius: 8px;
@@ -317,11 +318,6 @@ Substitute all `{placeholder}` values from `analysis.json` and `security-finding
     .count-card.medium .count-num { color: #92400e; }
     .count-card.low .count-num { color: var(--green); }
     .count-label { font-size: 0.8rem; color: var(--gray-700); margin-top: 0.25rem; }
-    .recs { list-style: none; }
-    .recs li { padding: 0.6rem 0; border-bottom: 1px solid var(--gray-200);
-               display: flex; gap: 0.6rem; }
-    .recs li::before { content: "→"; color: var(--blue); font-weight: bold;
-                       flex-shrink: 0; margin-top: 0.1rem; }
     .setup-cmd { background: #1e293b; color: #e2e8f0; padding: 0.75rem 1rem;
                  border-radius: 6px; font-family: monospace; font-size: 0.875rem;
                  margin: 0.5rem 0; }
@@ -480,10 +476,16 @@ Substitute all `{placeholder}` values from `analysis.json` and `security-finding
 
   <section>
     <h2>Recommendations</h2>
-    <ul class="recs">
-      <!-- Prioritized list. For review scenario: reference specific existing config
-           issues found vs what was generated as improvement -->
-    </ul>
+    <table>
+      <thead>
+        <tr><th>Priority</th><th>Category</th><th>Recommendation</th></tr>
+      </thead>
+      <tbody>
+        <!-- One row per recommendation. Priority cell uses badge-critical/high/medium/low
+             for security items (e.g. "P1 Critical") and badge-quality for quality/process items.
+             For review scenario: reference the specific existing config issue each row addresses. -->
+      </tbody>
+    </table>
   </section>
 
   <!-- Only for review scenario: -->

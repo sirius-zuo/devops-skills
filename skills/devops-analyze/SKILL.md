@@ -7,7 +7,7 @@ description: Use when called by the devops dispatcher to analyze a project and g
 
 ## Overview
 
-Reads project sources, detects the tech stack, then asks 6 guided questions with smart defaults. Produces `devops/working/analysis.json` consumed by all downstream sub-skills.
+Reads project sources, detects the tech stack, then asks 6 guided questions with smart defaults. Produces `devops/report/analysis.json` consumed by all downstream sub-skills.
 
 ## Step 1: Determine Scenario
 
@@ -21,7 +21,7 @@ Scan the working directory to determine which scenario applies:
 
 **Source code signals:** `.py`, `.ts`, `.tsx`, `.js`, `.mjs`, `.go`, `.java`, `.rb`, `.rs`, `.cs` files outside of `docs/`.
 
-If `devops/working/analysis.json` already exists and contains a `scenario` field, use that value without re-deriving.
+If `devops/report/analysis.json` already exists and contains a `scenario` field, use that value without re-deriving.
 
 ## Step 2: What to Read Per Scenario
 
@@ -127,7 +127,7 @@ Then ask:
 
 ## Step 5: Write Output
 
-Create `devops/working/` directory if it doesn't exist, then write `devops/working/analysis.json`:
+Create `devops/report/` directory if it doesn't exist, then write `devops/report/analysis.json`:
 
 ```json
 {
@@ -161,4 +161,4 @@ Substitute all values from actual detection and user answers. Do not leave templ
 
 Set `has_existing_ci: true` and `existing_ci_platform: "GitHub Actions"` (or whichever was detected) when a CI config file was found.
 
-Confirm to the user: "Analysis complete. Saved to devops/working/analysis.json."
+Confirm to the user: "Analysis complete. Saved to devops/report/analysis.json."

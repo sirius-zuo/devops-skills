@@ -46,8 +46,8 @@ Detected scenario: [show only the detected scenario name, e.g. "2. Code-complete
 Detected stack: [language] + [framework] | DB: [database] | Cloud: [cloud or "none detected"]
 
 I will now:
-1. Analyze the project and ask a few targeted questions → devops/working/analysis.json
-2. Run a security review → devops/working/security-findings.json
+1. Analyze the project and ask a few targeted questions → devops/report/analysis.json
+2. Run a security review → devops/report/security-findings.json
 3. Generate config files → devops/working/
 4. Produce an HTML report → devops/report/index.html
 
@@ -59,7 +59,7 @@ If the user declines, summarize the detected scenario and stack, and stop. Do no
 
 ## Pipeline
 
-Call these sub-skills in order. State flows through files on disk — `devops/working/analysis.json` (written by devops-analyze) and `devops/working/security-findings.json` (written by devops-security) — not through Skill tool args. Each sub-skill reads the files left by the previous one.
+Call these sub-skills in order. State flows through files on disk — `devops/report/analysis.json` (written by devops-analyze) and `devops/report/security-findings.json` (written by devops-security) — not through Skill tool args. Each sub-skill reads the files left by the previous one.
 
 1. Invoke `devops-analyze`
 2. Invoke `devops-security`
@@ -69,5 +69,6 @@ Call these sub-skills in order. State flows through files on disk — `devops/wo
 ## Output Locations
 
 - Config files: `devops/working/` (relative to project root)
+- JSON data files: `devops/report/` (analysis.json, security-findings.json)
 - HTML report: `devops/report/index.html`
 - Create both directories if they don't exist.

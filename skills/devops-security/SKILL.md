@@ -7,11 +7,11 @@ description: Use when called by the devops dispatcher after analysis to audit se
 
 ## Overview
 
-Runs a security checklist audit and selects appropriate CI security tools. Produces `devops/working/security-findings.json` and security tool configs in `devops/working/ci/security/`. Runs BEFORE `devops-generate` so security tool choices are baked into CI configs.
+Runs a security checklist audit and selects appropriate CI security tools. Produces `devops/report/security-findings.json` and security tool configs in `devops/working/ci/security/`. Runs BEFORE `devops-generate` so security tool choices are baked into CI configs.
 
 ## Inputs
 
-Read `devops/working/analysis.json` before starting. The relevant fields are:
+Read `devops/report/analysis.json` before starting. The relevant fields are:
 - `scenario` — "design", "codebase", or "review"
 - `choices.cloud_provider` — "AWS", "GCP", "Azure", "Multi-cloud", or "Self-hosted"
 - `choices.ci_cd_platform` — "GitHub Actions", "GitLab CI", or "CircleCI"
@@ -133,7 +133,7 @@ Read `choices.ci_cd_platform` and `choices.deployment_target` from analysis.json
 
 ### 1. Write security-findings.json
 
-Create `devops/working/security-findings.json`. Populate `summary` counts from actual findings. Populate `selected_tools` from the tool selection table above using the exact lowercase strings: `trivy`, `semgrep`, `codeql`, `dependabot`, `snyk`, `gitleaks`, `owasp-zap`.
+Create `devops/report/security-findings.json`. Populate `summary` counts from actual findings. Populate `selected_tools` from the tool selection table above using the exact lowercase strings: `trivy`, `semgrep`, `codeql`, `dependabot`, `snyk`, `gitleaks`, `owasp-zap`.
 
 ```json
 {
@@ -189,7 +189,7 @@ After writing all output files, tell the user:
 Security review complete.
   Critical: N | High: N | Medium: N | Low: N
   Tools selected: [list]
-  Saved to devops/working/security-findings.json
+  Saved to devops/report/security-findings.json
 
 Top findings:
   [List up to 3 findings, sorted by severity (Critical first, then High, then Medium, then Low). Break ties by listing in checklist order. If fewer than 3 findings total, list all of them.]

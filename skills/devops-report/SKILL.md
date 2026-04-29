@@ -7,13 +7,13 @@ description: Use when called by the devops dispatcher after config generation to
 
 ## Overview
 
-Read `devops/working/analysis.json` and `devops/working/security-findings.json` plus the generated file list. Produce `devops/report/index.html` — a single self-contained HTML file with embedded SVG diagrams, no external dependencies.
+Read `devops/report/analysis.json` and `devops/report/security-findings.json` plus the generated file list. Produce `devops/report/index.html` — a single self-contained HTML file with embedded SVG diagrams, no external dependencies.
 
 ## Inputs
 
 Read these files before generating the report:
-- `devops/working/analysis.json`
-- `devops/working/security-findings.json`
+- `devops/report/analysis.json`
+- `devops/report/security-findings.json`
 - List all files in `devops/working/` (for the artifacts table)
 
 ## Diagram Generation

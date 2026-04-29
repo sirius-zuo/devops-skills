@@ -7,7 +7,7 @@ description: Use when called by the devops dispatcher after security review to g
 
 ## Overview
 
-Reads `devops/working/analysis.json` and `devops/working/security-findings.json`. Generates working config templates to `devops/working/`. All files are templates — the user reviews and adapts them.
+Reads `devops/report/analysis.json` and `devops/report/security-findings.json`. Generates working config templates to `devops/working/`. All files are templates — the user reviews and adapts them.
 
 ## Inputs
 

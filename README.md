@@ -4,7 +4,7 @@
 
 # DevOps Skills
 
-AI agent skills for setting up CI/CD pipelines, security review, Docker, Kubernetes, Terraform, and deployment workflows — for any project, across three scenarios.
+A collection of DevOps skills designed for LLM-powered agents and AI workflows. This repository provides reusable capabilities, tools, prompts, and best-practice patterns to help automate infrastructure operations, CI/CD pipelines, cloud management, observability, security, and platform engineering tasks.
 
 ## What it does
 

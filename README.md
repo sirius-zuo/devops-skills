@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/devops-skill.png" alt="DevOps-Skills" width="1280">
+</p>
+
 # DevOps Skills
 
 AI agent skills for setting up CI/CD pipelines, security review, Docker, Kubernetes, Terraform, and deployment workflows — for any project, across three scenarios.

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/devops-skill.png" alt="DevOps-Skills" width="1280">
+  <img src="assets/devops-skill.png" alt="DevOps Skills" width="1280">
 </p>
 
 # DevOps Skills
